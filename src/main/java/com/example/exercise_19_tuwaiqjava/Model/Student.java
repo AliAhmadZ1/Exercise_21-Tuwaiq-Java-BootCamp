@@ -3,10 +3,8 @@ package com.example.exercise_19_tuwaiqjava.Model;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotEmpty;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import jakarta.validation.constraints.NotNull;
+import lombok.*;
 
 import java.util.Set;
 
@@ -15,20 +13,22 @@ import java.util.Set;
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
-public class Course {
+public class Student {
+    // Student Class :
+    //ID , name , age , major ( all should not be empty )
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
     @NotEmpty
     private String name;
+    @NotNull
+    private Integer age;
+    @NotEmpty
+    private String major;
 
-
-    @ManyToOne
-    @JoinColumn(name = "teacher_id",referencedColumnName = "id")
+    @ManyToMany
     @JsonIgnore
-    private Teacher teacher;
+    private Set<Course> courses;
 
-    @ManyToMany(mappedBy = "courses")
-    private Set<Student> student;
 }
