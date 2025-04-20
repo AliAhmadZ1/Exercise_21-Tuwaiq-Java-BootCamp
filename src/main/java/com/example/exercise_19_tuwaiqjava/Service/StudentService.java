@@ -57,4 +57,15 @@ public class StudentService {
         studentRepository.save(student);
         courseRepository.save(course);
     }
+
+    public void changeMajor(Integer id, String major){
+        Student student = studentRepository.findStudentById(id);
+        if (student==null)
+            throw new ApiException("student not found");
+
+        student.setMajor(major);
+        student.setCourses(null);
+        studentRepository.save(student);
+    }
+
 }
