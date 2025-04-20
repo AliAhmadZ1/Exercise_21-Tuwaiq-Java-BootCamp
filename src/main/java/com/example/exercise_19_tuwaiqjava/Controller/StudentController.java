@@ -45,4 +45,10 @@ public class StudentController {
         studentService.assignCourse(id, course_id);
         return ResponseEntity.status(200).body(new ApiResponse("course is assigned"));
     }
+
+    @PutMapping("/change-major/{id}/major/{major}")
+    public ResponseEntity changeMajor(@PathVariable Integer id, @PathVariable String major){
+        studentService.changeMajor(id, major);
+        return ResponseEntity.status(200).body(new ApiResponse("major is changed"));
+    }
 }
