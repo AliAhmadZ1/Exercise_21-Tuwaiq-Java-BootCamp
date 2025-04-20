@@ -50,5 +50,11 @@ public class CourseController {
         return ResponseEntity.status(200).body(courseService.getTeacherName(id));
     }
 
+    @GetMapping("/get-students/{id}")
+    public ResponseEntity getAllStudent(@PathVariable Integer id){
+        return ResponseEntity.status(200).body(courseService.getAllStudents(id));
+    }
+
+
 
 }
