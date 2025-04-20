@@ -2,6 +2,7 @@ package com.example.exercise_19_tuwaiqjava.Service;
 
 import com.example.exercise_19_tuwaiqjava.ApiResponse.ApiException;
 import com.example.exercise_19_tuwaiqjava.Model.Course;
+import com.example.exercise_19_tuwaiqjava.Model.Student;
 import com.example.exercise_19_tuwaiqjava.Model.Teacher;
 import com.example.exercise_19_tuwaiqjava.Repository.CourseRepository;
 import com.example.exercise_19_tuwaiqjava.Repository.TeacherRepository;
@@ -10,6 +11,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.RequestBody;
 
 import java.util.List;
+import java.util.Set;
 
 @Service
 @RequiredArgsConstructor
@@ -55,5 +57,13 @@ public class CourseService {
         if (course==null)
             throw new ApiException("course not found");
         return course.getTeacher().getName();
+    }
+
+    public Set<Student> getAllStudents(Integer id){
+        Course course = courseRepository.findCourseById(id);
+        if (course==null)
+            throw new ApiException("course not found ");
+
+        return course.getStudent();
     }
 }
